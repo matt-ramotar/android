@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mighty</string>
+    <string name="login_title">Welcome!</string>
+    <string name="login_subtitle">Mighty is a gamified wellness app. Users get points for working out, meditating, eating, sleeping.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
