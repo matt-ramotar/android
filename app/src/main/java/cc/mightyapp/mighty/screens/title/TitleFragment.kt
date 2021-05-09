@@ -50,8 +50,6 @@ class TitleFragment : Fragment() {
             binding.levelGraphic.loadUrl(response.graphic)
         })
 
-
-
         return binding.root
     }
 
