@@ -6,7 +6,7 @@
     app:startDestination="@id/titleFragment">
     <fragment
         android:id="@+id/titleFragment"
-        android:name="cc.mightyapp.mighty.screens.title.TitleFragment"
+        android:name="cc.mightyapp.mighty.ui.title.TitleFragment"
         android:label="TitleFragment" >
         <action
             android:id="@+id/action_titleFragment_to_loginFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="cc.mightyapp.mighty.screens.loginWithEmail.LogInWithEmailFragment"
+        android:name="cc.mightyapp.mighty.ui.loginWithEmail.LogInWithEmailFragment"
         android:label="LoginFragment" />
 </navigation>
