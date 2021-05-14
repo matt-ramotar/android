@@ -35,10 +35,9 @@ class LogInWithEmailFragment : Fragment() {
 
         binding.button2.setOnClickListener {
 
-            val input = LogInWithEmailInput(
-                binding.editTextTextEmailAddress.toString(),
-                binding.editTextTextPassword.toString()
-            )
+            val email = binding.editTextTextEmailAddress.text.toString()
+            val password = binding.editTextTextPassword.text.toString()
+            val input = LogInWithEmailInput(email, password)
 
             viewModel.logInWithEmail(input)
 

@@ -1,5 +1,6 @@
 package cc.mightyapp.mighty.ui.loginWithEmail
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ class LogInWithEmailViewModel(private val repository: Repository) : ViewModel() 
         viewModelScope.launch {
             val response: LogInWithEmailResponse = repository.logInWithEmail(input)
             myResponse.value = response
+            Log.i("Response token", response.token)
         }
     }
 }
