@@ -2,6 +2,7 @@ package cc.mightyapp.mighty.data.api
 
 import cc.mightyapp.mighty.util.types.inputs.LogInWithEmailInput
 import cc.mightyapp.mighty.data.models.Level
+import cc.mightyapp.mighty.data.models.User
 import cc.mightyapp.mighty.util.types.responses.LogInWithEmailResponse
 import cc.mightyapp.mighty.util.Constants.Companion.BEARER_TOKEN
 import retrofit2.http.*
@@ -18,4 +19,8 @@ interface Api {
 
     @POST("/auth/login/email")
     suspend fun loginWithEmail(@Body input: LogInWithEmailInput): LogInWithEmailResponse
+
+    @Headers("Authorization: Bearer $BEARER_TOKEN")
+    @GET("/v1/users/{userId}")
+    suspend fun getUser(@Path("userId") userId: String): User
 }
