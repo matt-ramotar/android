@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import cc.mightyapp.mighty.R
@@ -21,7 +22,6 @@ class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
     private lateinit var viewModelFactory: DashboardViewModelFactory
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,30 +33,14 @@ class DashboardFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.dashboard_fragment, container, false)
 
-        val user = User(
-            firstName = "Matt",
-            lastName = "Ramotar",
-            email = "matt@thoughtfultech.co",
-            id = "123",
-            achievements = listOf(),
-            isLoggedIn = true,
-            level = "1",
-            poundsLiftedTotal = 0,
-            xp = 0,
-            workouts = listOf(),
-            usersFollowedBy = listOf(),
-            usersFollowing = listOf(),
-            routinesAuthored = listOf(),
-            routinesFavorited = listOf(),
-            programsAuthored = listOf(),
-            programsFollowing = listOf()
-        )
-
         val repository = Repository()
         viewModelFactory = DashboardViewModelFactory(repository, userId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
 
-        binding.editTextTextPersonName.setText(userId)
+        viewModel.getUser(userId)
+        viewModel.user.observe(viewLifecycleOwner, Observer { user ->
+            binding.editTextTextPersonName.setText("${user.firstName} ${user.lastName}")
+        })
 
         return binding.root
     }

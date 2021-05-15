@@ -14,7 +14,7 @@ class DashboardViewModel(
 
     val user: MutableLiveData<User> = MutableLiveData()
 
-    fun getUser(){
+    fun getUser(userId: String) {
         viewModelScope.launch {
             val response: User = repository.getUser(userId)
             user.value = response
