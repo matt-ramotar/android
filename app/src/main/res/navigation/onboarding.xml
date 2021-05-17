@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/onboarding"
+    app:startDestination="com.android.tools.property.panel.api.EnumValue$Companion$LOADING$1@3fc8d357" >
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="cc.mightyapp.mighty.ui.onboarding.title.TitleFragment"
+        android:label="TitleFragment" >
+        <action
+            android:id="@+id/action_titleFragment_to_logInWithEmailFragment"
+            app:destination="@id/logInWithEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInWithEmailFragment"
+        android:name="cc.mightyapp.mighty.ui.onboarding.loginWithEmail.LogInWithEmailFragment"
+        android:label="LogInWithEmailFragment" />
+</navigation>

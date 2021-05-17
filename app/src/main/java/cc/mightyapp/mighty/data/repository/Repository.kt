@@ -1,6 +1,5 @@
 package cc.mightyapp.mighty.data.repository
 
-import cc.mightyapp.mighty.data.api.RetroFitInstance
 import cc.mightyapp.mighty.data.models.Level
 import cc.mightyapp.mighty.data.models.User
 import cc.mightyapp.mighty.util.types.inputs.LogInWithEmailInput

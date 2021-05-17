@@ -1,11 +1,11 @@
-package cc.mightyapp.mighty.ui.main
+package cc.mightyapp.mighty.ui.onboarding.title
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import cc.mightyapp.mighty.data.repository.Repository
 
-class MainViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
+class TitleViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(repository) as T
+        return TitleViewModel(repository) as T
     }
 }
