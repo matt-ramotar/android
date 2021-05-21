@@ -2,6 +2,7 @@ package cc.mightyapp.mighty.util
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.browser.customtabs.CustomTabsIntent.*
+import androidx.compose.runtime.Composable
 
 private const val LIGHT = "light"
 private const val DARK = "dark"

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cc.mightyapp.mighty.data.models.Level
-import cc.mightyapp.mighty.data.repository.Repository
 import kotlinx.coroutines.launch
 
 class TitleViewModel(private val repository: Repository): ViewModel() {

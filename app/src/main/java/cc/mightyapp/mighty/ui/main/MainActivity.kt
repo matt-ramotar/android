@@ -1,57 +1,50 @@
 package cc.mightyapp.mighty.ui.main
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.lifecycle.ViewTreeLifecycleOwner
+import cc.mightyapp.android.ui.theme.MightyTheme
 import cc.mightyapp.mighty.R
-import cc.mightyapp.mighty.data.repository.Repository
-import cc.mightyapp.mighty.ui.main.dashboard.DashboardFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import cc.mightyapp.mighty.data.models.User
+import cc.mightyapp.mighty.ui.onboarding.loginwithemail.LogInWithEmailContent
+import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
-class MainActivity : AppCompatActivity() {
+const val USER_ID = "cc.mightyapp.mighty.ui.main.USER_ID"
+const val TOKEN = "cc.mightyapp.mighty.ui.main.TOKEN"
 
-    private lateinit var viewModel: MainViewModel
+fun launchMainActivity(context: Context, user: User, token: String) {
+    val intent = Intent(context, MainActivity::class.java).apply {
+        putExtra(USER_ID, user.id)
+        putExtra(TOKEN, token)
+    }
+    context.startActivity(intent)
+}
 
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+
+    @ExperimentalFoundationApi
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val userId = intent.getStringExtra(USER_ID)
+        val token = intent.getStringExtra(TOKEN)
 
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-    }
-
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener {
-            when (it.itemId) {
-
-                R.id.nav_dashboard -> {
-                    val dashboardFragment = DashboardFragment()
-                    openFragment(dashboardFragment)
-                    return@OnNavigationItemSelectedListener true
+        setContent {
+            ProvideWindowInsets {
+                MightyTheme {
+                    MainContent(userId = userId!!, token = token!!)
                 }
-
             }
-            false
         }
-
-    private fun openFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
-
-    fun setUpToolbar() {
-        // Hide action bar
-        val actionBar = supportActionBar
-        actionBar!!.hide()
-    }
-
 }

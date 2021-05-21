@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cc.mightyapp.mighty.R
 import cc.mightyapp.mighty.databinding.TitleFragmentBinding
-import cc.mightyapp.mighty.data.repository.Repository
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest

@@ -13,6 +13,6 @@
     </fragment>
     <fragment
         android:id="@+id/logInWithEmailFragment"
-        android:name="cc.mightyapp.mighty.ui.onboarding.loginWithEmail.LogInWithEmailFragment"
+        android:name="cc.mightyapp.mighty.ui.onboarding.loginwithemail.LogInWithEmailFragment"
         android:label="LogInWithEmailFragment" />
 </navigation>

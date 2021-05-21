@@ -1,23 +1,25 @@
 package cc.mightyapp.mighty.ui.main.dashboard
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cc.mightyapp.mighty.data.models.User
-import cc.mightyapp.mighty.data.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DashboardViewModel(
-    private val repository: Repository,
-    private val userId: String
-) : ViewModel() {
+@HiltViewModel
+class DashboardViewModel @Inject constructor() : ViewModel() {
 
-    val user: MutableLiveData<User> = MutableLiveData()
+    val isLoading = MutableStateFlow(true)
 
-    fun getUser(userId: String) {
-        viewModelScope.launch {
-            val response: User = repository.getUser(userId)
-            user.value = response
-        }
+    private val _state = MutableStateFlow(DashboardViewState())
+    val state: StateFlow<DashboardViewState>
+        get() = _state
+
+    fun loadState(user: User) {
+        _state.value = DashboardViewState(user = user)
+        isLoading.value = false
     }
 }
